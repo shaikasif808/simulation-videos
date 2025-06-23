@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulation Videos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    .video-container { max-width: 800px; margin: 0 auto 2rem auto; }
+    #qrcode { margin-top: 1.5rem; display: flex; justify-content: center; }
+  </style>
+</head>
+<body>
+  <h1>Simulation Videos</h1>
+
+<div class="video-container">
+  <h2>🔄 Core Concept of Recurrence-Based CFD (rCFD)</h2>
+  <p>
+    This video illustrates the fundamental idea behind rCFD: comparing a reference frame (time step)
+    with all other frames by quantifying how mass (solid fraction) shifts from one cell to another.
+    The degree of similarity between frames is based on the time required for these cell-to-cell shifts,
+    enabling the construction of a recurrence matrix for predictive modeling.
+  </p>
+  <video width="100%" controls>
+    <source src="F:\02_Scripts\HPC\05_FSP\c2c_shift.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<div class="video-container">
+  <h2>⚙️ Implementation of rCFD in a 2D Pseudo-Fluidized Bed</h2>
+  <p>
+    This sequence demonstrates the application of rCFD to a 2D fluidized bed system:
+    <ul>
+      <li>🔹 Initial segment shows a 5-second CFD-DEM simulation with particle motion.</li>
+      <li>📉 A line plot presents the fluctuation of mean bed height over time.</li>
+      <li>🟩 A recurrence heatmap compares each frame based on similarity (as introduced above).</li>
+      <li>🧵 Followed by a stitched sequence of frames to perform time extrapolation using rCFD.</li>
+      <li>✅ The final clip displays the extrapolated result and the corresponding predicted bed height.</li>
+    </ul>
+  </p>
+  <video width="100%" controls>
+    <source src="F:\02_Scripts\HPC\05_FSP\rCFD_implementation.mkv" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<div class="video-container">
+  <h2>⚙️ Implementation of rCFD in a Pilot-Scale GF25 Fluidized Bed</h2>
+  <p>
+    This video demonstrates the mixing behavior of binary particles (γ-Al<sub>2</sub>O<sub>3</sub>, 1.8 mm) in a pilot-scale fluidized bed (GF25):
+  </p>
+  <ul>
+    <li>🟦 Initially, 5 kg of <strong>coated particles</strong> are placed on the left half of the bed, while <strong>uncoated particles</strong> occupy the right half.</li>
+    <li>🌪️ Once fluidization begins, the particles start to mix due to gas-solid interactions.</li>
+    <li>⚠️ Performing full-scale CFD-DEM simulations for such a large system is computationally expensive and impractical.</li>
+    <li>💡 Instead, we use <strong>recurrence-based CFD (rCFD)</strong> to exploit the repetitive flow patterns.</li>
+    <li>🔍 The video tracks <strong>tracer particles</strong> across the bed using rCFD to visualize the mixing dynamics.</li>
+    <li>⚡ This approach achieves a <strong>computational speed-up of four orders of magnitude</strong> compared to traditional CFD-DEM.</li>
+  </ul>
+  <video width="100%" controls>
+    <source src="F:\02_Scripts\HPC\05_FSP\particles_movement_rCFD.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+  <!-- If you prefer embedding from YouTube, replace the <video> blocks above with something like:
+  <div class="video-container">
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+  </div>
+  -->
+
+  <h2>Scan to Watch Later</h2>
+  <p align="center">Point your phoneʼs camera at this QR code to open the page:</p>
+  <div id="qrcode"></div>
+
+  <!-- QRCode.js (MIT‑licensed, ~4 KB) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    // By default this encodes the current page URL so the same file works on any host/path.
+    // If you want to link somewhere else, just replace window.location.href with your target URL.
+    const pageURL = window.location.href;
+    new QRCode(document.getElementById("qrcode"), {
+      text: pageURL,
+      width: 220,   // increase for higher‑resolution print
+      height: 220,
+      correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
+    });
+  </script>
+</body>
+</html>
